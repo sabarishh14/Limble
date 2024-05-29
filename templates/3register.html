@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+   <style>
+    html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F5FF; /* Set the background color of the whole page */
+        }   
+     .custom-bg {
+        background-color: #F5F5FF !important;
+        min-height: 100vh; /* Set minimum height to 100% of viewport height */
+        display: flex; /* Use flexbox for vertical centering */
+        align-items: center; /* Vertically center the content */
+    }
+
+    .bg-white {
+            width: 100%; /* Set the width of the card */
+            max-width: 600px; /* Maximum width */
+            padding: 1rem;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    label{
+        font-family: 'Inter';
+        font-weight: bold;
+    }
+    
+    h3{
+        font-family: 'Inter';
+        font-weight: bolder;
+    }
+   </style> 
+</head>
+
+<body>
+
+    <div class="bg-light py-3 py-md-5 custom-bg ">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="bg-white p-4 p-md-5 rounded">
+                        <div class="mb-5">
+                            <p>Step 1 of 3</p>
+                            <h3>Tell us a bit about yourself</h3>
+                        </div>
+                        <form action="/register" method="post" enctype="multipart/form-data">
+                            <div class="row gy-3 gy-md-4">
+                                <!-- Add this code inside the form -->
+                                <div class="col-12" style="margin-top: 0; margin-bottom: 20px;">
+                                    <label for="image" class="form-label">Upload Profile Picture</label>
+                                    <input type="file" class="form-control" name="image" id="image" required>
+                                </div>
+                                <div class="col-12" style="margin-top: 0;">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Your name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="age" class="form-label">Age<span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" name="age" id="age" placeholder="Enter your age" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="languages" class="form-label">Enter languages you speak<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="languages" id="languages" placeholder="Languages (English, Tamil, Hindi) " required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="location" class="form-label">Location<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="location" id="location" placeholder="City, Country" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="gender" class="form-label">Gender<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="gender" id="gender">
+                                        <option selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select required>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-lg btn-primary" type="submit">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

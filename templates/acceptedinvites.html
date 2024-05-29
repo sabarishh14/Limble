@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limble Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+
+        .badge {
+            background-color: #F5F5FF;
+            color: black;
+            font-weight: normal;
+            padding: 16px 12px;
+            font-size: 16px;
+            display: inline-block;
+            margin-right: 7px;
+            margin-left: 7px;
+            margin-bottom: 14px;
+            border: none;
+        }
+
+        .badge:first-child {
+            margin-left: 0;
+        }
+
+        #full-image-card {
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        body {
+            background-color: #f5f5ff;
+        }
+
+        .sidebar {
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .logo {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-info, .nav-item {
+            padding-top: 24px;
+            padding-left: 15px;
+        }
+
+        .user-role {
+            color: #666;
+            font-size: smaller;
+            margin-bottom: 20px;
+        }
+
+        .btn-menu {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .tall-card {
+            height: 620px;
+        }
+
+        .custom-button {
+            border-radius: 20px;
+            width: 220px;
+            height: 60px;
+            background-color: #1814F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: #1814F3;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            height: 80px;
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Side navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <!-- Logo Image -->
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <!-- User Info -->
+            <div class="user-info">
+                <div style="font-size: 22px; font-weight: 500;">{{mentor_name}}</div>
+                <div class="user-role" style="font-size: 18px;">Mentor</div>
+            </div>
+            <div class="position-sticky pt-3">
+                <!-- Button links with icons -->
+                <form action="/dashboard" method="get">
+                    <button class="btn btn-light btn-menu">
+                        <img src="{{ url_for('static', filename='material-symbols_home.png') }}" alt="Mentor Icon" style="padding-right: 8px;"> Mentees Info
+                    </button>
+                </form>
+                <button class="btn btn-light btn-menu">
+                    <img src="{{ url_for('static', filename='invite-png.png') }}" style="padding-right: 8px"; alt="Edit Icon" > Other Matched Mentees   
+                </button>
+                <button class="btn btn-light btn-menu">
+                    <img src="{{ url_for('static', filename='settings solid 2.png') }}" style="padding-right: 8px"; alt="Settings Icon"> Settings
+                </button>
+                <form action="/logout" method="post">
+                    <button class="btn btn-light btn-menu">
+                        <img src="{{ url_for('static', filename='material-symbols_logout.png') }}" style="padding-right: 8px"; alt="Logout Icon"> Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Page content -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h2 style="margin-top: 24px; margin-bottom: 40px;">Other Matched Mentees</h2>
+            <!-- Cards for matched mentees -->
+            <div class="row" id="card-container">
+                {% for mentee in invite %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{mentee.pic}}" style="width: 100%; height: auto; object-fit: cover;" alt="Profile Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ mentee.name }}</h5>
+                            <p class="card-text">Current Designation: {{ mentee.current_skill_level }}</p>
+                            <form action="/dummydash" method="post">
+                                <!-- Hidden input to store the details of the clicked card -->
+                                <input type="hidden" name="mentee_name" value="{{ mentee.name }}">
+                                <input type="hidden" name="current_skill_level" value="{{ mentee.current_skill_level }}">
+                                <input type="hidden" name="email" value="{{ mentee.email }}">
+                                <button type="submit" class="btn btn-primary">Details</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Add more cards as needed -->
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

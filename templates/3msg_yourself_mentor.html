@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    
+    <style>
+        h3{
+        font-family: 'Inter';
+        font-weight: bolder;
+    }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F5FF; /* Set the background color of the whole page */
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            width: 100%;
+            padding: 10px 20px; /* Add some padding to the header */
+            box-sizing: border-box;
+        }
+        .content {
+            flex-grow: 1; /* Takes up all available space */
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .bg-white {
+            width: 100%; /* Set the width of the card */
+            max-width: 600px; /* Maximum width */
+            padding: 1rem;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        label{
+        font-family: 'Inter';
+        font-weight: bold;
+    }
+    
+        textarea {
+            height: 150px;
+            overflow-y: auto;
+        }
+    </style>
+    
+        
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="height: 50px;"> <!-- Adjust path and height as needed -->
+    </div>
+    <div class="content">
+    <div class="bg-white p-4 p-md-5 rounded">
+        <div class="mb-5">
+            <p>Step 2 of 3</p>
+            <h3>Write a story describing yourself and your profession</h3>
+        </div>
+        <form action="/msgy" method="post">
+            <div class="row gy-3 gy-md-4">
+                <div class="col-12" style="margin-top: 0; margin-bottom: 0;">
+                    <textarea class="form-control" name="msg" id="msg" style="margin-bottom: 25px;" placeholder="Tell us about yourself so that our app get your needs and connects you with a suitable mentor" required></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-grid">
+                    <button class="btn btn-lg btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

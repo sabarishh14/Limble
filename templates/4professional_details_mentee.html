@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+   <style>
+    html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F5FF; /* Set the background color of the whole page */
+        }
+     .custom-bg {
+        background-color: #F5F5FF !important;
+        min-height: 100vh; /* Set minimum height to 100% of viewport height */
+        display: flex; /* Use flexbox for vertical centering */
+        align-items: center; /* Vertically center the content */
+    }
+
+    .bg-white {
+            width: 100%; /* Set the width of the card */
+            max-width: 600px; /* Maximum width */
+            padding: 1rem;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+    label{
+        font-family: 'Inter';
+        font-weight: bold;
+    }
+    
+    h3{
+        font-family: 'Inter';
+        font-weight: bolder;
+    }
+   </style> 
+</head>
+
+<body>
+    <div class="bg-light py-3 py-md-5 custom-bg ">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="bg-white p-4 p-md-5 rounded">
+                        <div class="mb-5">
+                            <p>Step 3 of 3</p>
+                            <h3>Tell us a bit about your profession</h3>
+                        </div>
+                        <form action="/prof" method="post">
+                            <div class="row gy-3 gy-md-4">
+                                <div class="col-12" style="margin-top: 0;">
+                                    <label for="current_skill_level" class="form-label">Current Skill Level</label>
+                                    <select class="form-select" name="current_skill_level" id="current_skill_level" required>
+                                        <option selected>Select Current Skill Level</option>
+                                        <option value="beginner">Beginner</option>
+                                        <option value="intermediate">Intermediate</option>
+                                        <option value="advanced">Advanced</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="learning_style" class="form-label">Learning Style<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="learning_style" id="learning_style" placeholder="Enter your learning style" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="expectations" class="form-label">Expectations<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="expectations" id="expectations" placeholder="Enter your expectations" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="linkedin" class="form-label">LinkedIn Link<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your LinkedIn profile link" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="places_of_study" class="form-label">Places of Study<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="places_of_study" id="places_of_study" placeholder="Enter places of study" required>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

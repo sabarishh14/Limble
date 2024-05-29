@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limble Home</title>
+    <!-- Bootstrap CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+
+        .badge {
+    background-color: #F5F5FF;
+    color: black;
+    font-weight: normal;
+    padding: 16px 12px;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 7px; /* Right margin to create space between horizontally adjacent pills */
+    margin-left: 7px; /* Left margin for the same purpose, except for the first pill */
+    margin-bottom: 14px; /* Bottom margin to separate vertically stacked pills */
+    border: none;
+}
+
+.badge:first-child {
+    margin-left: 0; /* Removes left margin from the first pill to align properly */
+}
+        #full-image-card {
+            padding: 0; /* Remove padding inside the card */
+            margin-bottom: 20px;
+        }
+        body {
+            background-color: #f5f5ff;
+        }
+        .sidebar {
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+        .logo {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .user-info, .nav-item {
+            padding-top: 24px;
+            padding-left: 15px;
+        }
+        .user-role {
+            color: #666;
+            font-size: smaller;
+            margin-bottom: 20px;
+        }
+        .btn-menu {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        /* Styling for the cards */
+        .card {
+            height: 300px; /* Fixed height for regular cards */
+            margin-bottom: 20px;
+        }
+        .tall-card {
+            height: 620px; /* Adjusted height to align with two cards plus margin */
+        }
+        .custom-button {
+            border-radius: 20px;
+            width: 220px;
+            height: 60px;
+            background-color: #1814F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 30px;
+            font-family: 'Inter';
+            font-weight: 700;
+            margin-right: 10px; /* Add some top margin and auto for horizontal centering */
+            }
+
+        .secondary-button {
+            border-radius: 20px;
+            width: 100px;
+            height: 60px;
+            background-color: transparent;
+            color: #1814F3;
+            border: none;
+            font-size: 18px;
+            border-radius: 30px;
+            font-family: 'Inter';
+            font-weight: 700;
+            cursor: pointer;
+            margin-right: 10px; /* Add some top margin and auto for horizontal centering */
+        }
+        
+        .button-group {
+            text-align: center; /* Center the button group if alone */
+            margin-bottom: 20px; /* Space below the button group */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Side navigation -->
+        <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <!-- Logo Image -->
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <!-- User Info -->
+            <div class="user-info">
+                <div style="font-size: 22px; font-weight: 500;">{{mentee_name}}</div>
+                <div class="user-role" style="font-size: 18px;">Mentee</div>
+            </div>
+            <div class="position-sticky pt-3">
+                <!-- Button links with icons -->
+                <button class="btn btn-light btn-menu">
+                    <img src="{{ url_for('static', filename='material-symbols_home.png') }}" alt="Mentor Icon" style="padding-right: 8px;"> Find a Mentor
+                </button>
+                <form action="/matches" method="post">
+                    <button class="btn btn-light btn-menu">
+                        <img src="{{ url_for('static', filename='invite-png.png') }}" style="padding-right: 8px"; alt="Edit Icon" > Matches   
+                    </button>
+                </form>
+                <button class="btn btn-light btn-menu">
+                    <img src="{{ url_for('static', filename='settings solid 2.png') }}" style="padding-right: 8px"; alt="Settings Icon"> Settings
+                </button>
+                <form action="/logout" method="post">
+                    <button class="btn btn-light btn-menu">
+                        <img src="{{ url_for('static', filename='material-symbols_logout.png') }}" style="padding-right: 8px"; alt="Logout Icon"> Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Page content -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h2 style="margin-top: 24px;">Mentors for you</h2>
+            <p style="margin-bottom: 40px;">Mentors found by matching with your needs</p>
+            <!-- Cards for dashboard -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card" id="full-image-card">
+                        <img style="width: 100%; height: 100%; object-fit: center; display: block;" src="{{mentor_dict['pic']}}">
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Socials</h5>
+                            <p class="card-text"><strong>Email:</strong> <a href="{{mentor_dict['email']}}">{{mentor_dict['email']}}</a></p>
+                            <p class="card-text"><strong>Linkedin:</strong> <a href="{{mentor_dict['linkedin']}}">{{mentor_dict['linkedin']}}</a></p>
+                            <h5 class="card-title">{{ 'Rating' if 'rating' in mentor_dict else 'No previous ratings' }}</h5>
+                            <p class="card-text">{{ mentor_dict['rating'] if 'rating' in mentor_dict else '' }} out of 5.0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{mentor_dict['name']}}</h5>
+                            <br>
+                            <p class="card-text"><strong>Field:</strong> {{mentor_dict['field_of_work']}}</p>
+                            <p class="card-text"><strong>Designation:</strong> {{mentor_dict['designation']}}</p>
+                            <p class="card-text"><strong>Places Of Study:</strong> {{mentor_dict['places_of_study']}}</p>
+                            <p class="card-text"><strong>Places of work:</strong> {{mentor_dict['places_of_work']}}</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Matching Tags</h5>
+                            <p class="card-text">Explore related tags to find perfect matches.</p>
+                            {%for skill in mentor_skill_list%}
+                            
+                            <span class="badge rounded-pill">{{skill}}</span>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional taller card in the third column -->
+                <div class="col-md-4">
+                    <div class="card tall-card">
+                        <div class="card-body">
+                            <h5 class="card-title">About the mentor</h5>
+                            <p class="card-text">{{mentor_dict['about_yourself']}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Custom Button -->
+            <!-- Custom Button -->
+            <div class="button-group d-flex justify-content-center"> <!-- Added d-flex and justify-content-between -->
+                <form action="/send-invite" method="post">
+                    <button type="submit" class="custom-button">Send an invite</button>
+                </form>
+                
+                <form action="/next" method="post">
+                    <button class="secondary-button">Next</button>
+                </form>              
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
